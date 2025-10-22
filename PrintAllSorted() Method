@@ -1,0 +1,23 @@
+void CourseTable::PrintAllSorted() {
+    vector<string> keys;
+
+    for (unsigned int i = 0; i < tableSize; i++) {
+        if (nodes[i].key != UINT_MAX) {
+            Node* current = &nodes[i];
+            while (current != nullptr) {
+                keys.push_back(current->course.courseNumber);
+                current = current->next;
+            }
+        }
+    }
+
+    sort(keys.begin(), keys.end());
+
+    cout << "\nCourse List (Sorted):" << endl;
+    cout << "----------------------------------------" << endl;
+    for (string key : keys) {
+        Course found = Search(key); // Look up the course details
+        cout << found.courseNumber << ", " << found.name << endl;
+    }
+    cout << "----------------------------------------" << endl;
+}
